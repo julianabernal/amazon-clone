@@ -4,13 +4,22 @@ import {
   SearchIcon,
   ShoppingCartIcon,
 } from "@heroicons/react/outline";
+import { signIn, signOut, useSession } from "next-auth/client";
+import { useRouter } from "next/router";
+import { selectItems } from "../slices/basketSlice";
+import { useSelector } from "react-redux";
 
 function Header() {
+  const [session] = useSession();
+  const router = useRouter();
+  const items = useSelector(selectItems);
+
   return (
     <header>
       <div className="flex items-center bg-amazon_blue p-1 flex-grow py-">
         <div className="mt- flex items-center flex-grow sm:flex-grow-0">
           <Image
+            onClick={() => router.push("/")}
             src="https://links.papareact.com/f90"
             width={150}
             height={40}
@@ -39,8 +48,15 @@ function Header() {
               className="cursor-pointer"
             />
           </div>
-          <div className=" link">
-            <p> !Hola Juli!</p>
+          {/* !session ? signIn : signOut le esta diciendo que al hacer click en iniciar sesion si no hay una cuenta que haga el signIn
+           y los 2puntos : son el OTHERWISE es decir, si ya hay sesion entonces que haga signout */}
+          <div
+            onClick={!session ? signIn : signOut}
+            className="cursor-pointer link"
+          >
+            <p className="hover:underline">
+              {session ? `Hola, ${session.user.name}!` : "Hola! Inicia Sesión"}
+            </p>
             <p className="font-extrabold md:text-sm ">Cuenta y Listas</p>
           </div>
 
@@ -49,9 +65,12 @@ function Header() {
             <p className="font-extrabold md:text-sm ">y Pedidos</p>
           </div>
 
-          <div className="relative link flex items-center ">
+          <div
+            onClick={() => router.push("/checkout")}
+            className="relative link flex items-center "
+          >
             <span className="absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 text-center rounded-full text-black font-bold">
-              0
+              {items.length}
             </span>
             <ShoppingCartIcon className="h-10" />
             <p className="hidden md:inline font-extrabold md:text-sm mt-2">
