@@ -30,14 +30,23 @@ function Header() {
 
         {/* Right*/}
         <div className="text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap">
+          <div>
+            <Image
+              src="/images/colombiaflag.png"
+              width={50}
+              height={20}
+              objectFit="contain"
+              className="cursor-pointer"
+            />
+          </div>
           <div className=" link">
-            <p> Heeyy Juli</p>
-            <p className="font-extrabold md:text-sm ">Account & Lists</p>
+            <p> !Hola Juli!</p>
+            <p className="font-extrabold md:text-sm ">Cuenta y Listas</p>
           </div>
 
           <div className=" link">
-            <p>Returns</p>
-            <p className="font-extrabold md:text-sm ">& Orders</p>
+            <p>Devoluciones</p>
+            <p className="font-extrabold md:text-sm ">y Pedidos</p>
           </div>
 
           <div className="relative link flex items-center ">
@@ -46,7 +55,7 @@ function Header() {
             </span>
             <ShoppingCartIcon className="h-10" />
             <p className="hidden md:inline font-extrabold md:text-sm mt-2">
-              Basket
+              Carrito
             </p>
           </div>
         </div>
@@ -57,17 +66,17 @@ function Header() {
       <div className="flex items-center space-x-3 p-2 pl-6 bg-amazon_blue-light text-white text-sm">
         <p className="link flex items-center">
           <MenuIcon className="h-6 mr-1" />
-          All
+          Todo
         </p>
         <p className="link"> Prime Video </p>
-        <p className="link"> Amazon Business </p>
-        <p className="link"> Today's Deals </p>
-        <p className="link hidden lg:inline-flex"> Electronics</p>
-        <p className="link hidden lg:inline-flex"> Food & Grocery</p>
+        <p className="link"> Amazon para el trabajo </p>
+        <p className="link"> Oferta del día </p>
+        <p className="link hidden lg:inline-flex"> Electrónicos</p>
+        <p className="link hidden lg:inline-flex"> Alimentos</p>
         <p className="link hidden lg:inline-flex"> Prime</p>
-        <p className="link hidden lg:inline-flex"> Buy Again</p>
-        <p className="link hidden lg:inline-flex"> Shopper Toolkit</p>
-        <p className="link hidden lg:inline-flex"> Health & Personal Care</p>
+        <p className="link hidden lg:inline-flex"> Comprar de nuevo</p>
+        <p className="link hidden lg:inline-flex"> Kit de compras</p>
+        <p className="link hidden lg:inline-flex"> Salud y cuidado personal</p>
       </div>
     </header>
   );

@@ -37,17 +37,17 @@ function Product({ id, title, price, description, category, image }) {
 
       <div className="mb-5">
         {/* REACT CURRENCY FORMAT TO CHANGE THE CURRENCY */}
-        <Currency quantity={price} currency="GBP" />
+        <Currency quantity={price} currency="COP" />
       </div>
 
       {hasPrime && (
         <div className="flex items-center space-x-2 -mt-5">
           <img className="w-12" src="https://links.papareact.com/fdw" alt="" />
-          <p className="text-xs text-gray-500">FREE Next-day Delivery</p>
+          <p className="text-xs text-gray-500">Prime entrega GRATIS</p>
         </div>
       )}
 
-      <button className="mt-auto button">Add to basket</button>
+      <button className="mt-auto button">Agregar al carrito</button>
     </div>
   );
 }
