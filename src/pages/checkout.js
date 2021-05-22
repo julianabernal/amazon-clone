@@ -1,7 +1,16 @@
 import Header from "../components/Header";
 import Image from "next/image";
+import { useSelector } from "react-redux";
+import { selectItems } from "../slices/basketSlice";
+import CheckoutProduct from "../components/CheckoutProduct";
+import Currency from "react-currency-formatter";
+import { useSession } from "next-auth/client";
+import { selectTotal } from "../slices/basketSlice";
 
 function Checkout() {
+  const items = useSelector(selectItems);
+  const total = useSelector(selectTotal);
+  const [session] = useSession();
   return (
     <div className=" bg-gray-100">
       <Header />
@@ -17,12 +26,51 @@ function Checkout() {
           />
 
           <div className="flex flex-col p-5 space-y-10 bg-white">
-            <h1 className="text-3xl border-b pb-4"> Tu carrito de compras </h1>
+            {/* ? means 'then' in the function */}
+            <h1 className="text-3xl border-b pb-4">
+              {items.length === 0
+                ? "Tu carrito de compras está vacío."
+                : "Carrito de compras."}
+            </h1>
+            {items.map((item, i) => (
+              <CheckoutProduct
+                key={i}
+                id={item.id}
+                title={item.title}
+                rating={item.rating}
+                price={item.price}
+                description={item.description}
+                category={item.category}
+                image={item.image}
+                hasPrime={item.hasPrime}
+              />
+            ))}
           </div>
         </div>
 
         {/* Right */}
-        <div></div>
+        <div className="flex flex-col bg-white p-10 shadow-md">
+          {items.length > 0 && (
+            <>
+              <h2 classNAme="whitespace-normal">
+                Subtotal ({items.length}) items):{" "}
+                <span className="font-bold">
+                  <Currency quantity={total} currency="COP" />
+                </span>
+              </h2>
+
+              <button
+                disabled={!session}
+                className={`button mt-2 ${
+                  !session &&
+                  "from-gray-300 to-gray-500 border-gray-200 text-gray-300 cursor-not-allowed"
+                }`}
+              >
+                {!session ? "Inicia sesión para pagar" : "Procede a pagar"}
+              </button>
+            </>
+          )}
+        </div>
       </main>
     </div>
   );
