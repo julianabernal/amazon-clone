@@ -7,6 +7,8 @@ import Order from "../components/Order";
 function Orders({ orders }) {
   const [session] = useSession();
 
+  console.log(orders);
+
   return (
     <div>
       <Header />
@@ -16,7 +18,7 @@ function Orders({ orders }) {
         </h1>
 
         {session ? (
-          <h2> Compras </h2>
+          <h2> {orders.length} Compras </h2>
         ) : (
           <h2> Por favor inicia sesión para ver tus compras</h2>
         )}
@@ -68,7 +70,7 @@ export async function getServerSideProps(context) {
     stripeOrders.docs.map(async (order) => ({
       id: order.id,
       amount: order.data().amount,
-      amountShipping: order.data().amout_shipping,
+      amountShipping: order.data().amount_shipping,
       images: order.data().images,
       timestamp: moment(order.data().timestamp.toDate()).unix(),
       items: (
@@ -80,6 +82,8 @@ export async function getServerSideProps(context) {
   );
 
   return {
-    props: {},
+    props: {
+      orders,
+    },
   };
 }
