@@ -31,7 +31,7 @@ function Header() {
 
         <div className="hidden sm:flex items-center h-10 rounded-md flex-grow cursor-pointer bg-yellow-400 hover:bg-yellow-500">
           <input
-            className="p-2 h-full w-6 flex-grow rflex-shrink rounded-l-md focus:outline-none p-4"
+            className="p-2 h-full w-6 flex-grow rflex-shrink rounded-l-md focus:outline-none"
             type="text"
           />
           <SearchIcon className="h-12 p-4" />
@@ -60,7 +60,10 @@ function Header() {
             <p className="font-extrabold md:text-sm ">Cuenta y Listas</p>
           </div>
 
-          <div className=" link">
+          <div
+            onClick={() => session && router.push("/orders")}
+            className="cursor-pointer link"
+          >
             <p>Devoluciones</p>
             <p className="font-extrabold md:text-sm ">y Pedidos</p>
           </div>

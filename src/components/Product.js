@@ -57,7 +57,7 @@ function Product({ id, title, price, description, category, image }) {
 
       <div className="mb-5">
         {/* REACT CURRENCY FORMAT TO CHANGE THE CURRENCY */}
-        <Currency quantity={price} currency="COP" />
+        <Currency quantity={price} currency="USD" />
       </div>
 
       {hasPrime && (
